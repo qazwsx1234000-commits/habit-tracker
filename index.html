@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HabitFlow | 습관 루틴 트래커</title>
+  
+  <!-- Google Fonts: Outfit & Noto Sans KR -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="glass-bg-decor decor-1"></div>
+  <div class="glass-bg-decor decor-2"></div>
+  
+  <div class="container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo-area">
+        <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+        </svg>
+        <h1>Habit<span>Flow</span></h1>
+      </div>
+      <div class="date-area">
+        <span id="current-date">2026년 6월 21일 일요일</span>
+        <span id="current-time">15:50</span>
+      </div>
+    </header>
+
+    <!-- Dashboard Section -->
+    <section class="dashboard-section">
+      <div class="stat-card progress-card">
+        <div class="stat-info">
+          <h3>오늘의 달성률</h3>
+          <div class="progress-details">
+            <span class="percentage" id="completion-percentage">0%</span>
+            <span class="count" id="completion-ratio">0 / 0 완료</span>
+          </div>
+        </div>
+        <div class="progress-bar-container">
+          <div class="progress-bar-fill" id="completion-bar" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card mini-card">
+          <span class="stat-label">전체 습관</span>
+          <span class="stat-val" id="total-habits-count">0</span>
+        </div>
+        <div class="stat-card mini-card">
+          <span class="stat-label">최장 스트릭</span>
+          <span class="stat-val" id="best-streak-count">0일</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Habit Input Form -->
+    <section class="input-section">
+      <form id="habit-form" novalidate>
+        <div class="input-group">
+          <input 
+            type="text" 
+            id="habit-input" 
+            placeholder="새로운 습관을 입력하세요 (예: 매일 30분 코딩)" 
+            maxlength="20"
+            autocomplete="off"
+            aria-describedby="error-message"
+            aria-invalid="false"
+            required
+          >
+          <button type="submit" class="btn-add">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <span>추가</span>
+          </button>
+        </div>
+        <div class="form-feedback">
+          <span id="char-counter">0 / 20</span>
+          <span id="error-message" class="error-hidden" aria-live="polite">습관명을 입력해 주세요.</span>
+        </div>
+      </form>
+    </section>
+
+    <!-- Habit List Section -->
+    <section class="list-section">
+      <div class="list-header">
+        <h2>내 습관 목록</h2>
+        <div class="filter-tabs">
+          <button class="filter-tab active" data-filter="all">전체</button>
+          <button class="filter-tab" data-filter="active">진행 중</button>
+          <button class="filter-tab" data-filter="completed">완료</button>
+        </div>
+      </div>
+
+      <div id="habit-list" class="habit-list">
+        <!-- JS가 여기에 습관 카드를 동적으로 렌더링합니다. -->
+      </div>
+      
+      <!-- Empty State Template (JS에서 제어) -->
+      <div id="empty-state" class="empty-state hidden">
+        <div class="empty-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+        </div>
+        <p>아직 등록된 습관이 없습니다.<br>새로운 목표를 추가하고 시작해 보세요!</p>
+      </div>
+    </section>
+
+    <!-- App Footer / Actions -->
+    <footer class="app-footer">
+      <p>© 2026 HabitFlow. All rights reserved.</p>
+      <div class="footer-actions">
+        <button id="btn-demo" class="btn-secondary">데모 데이터 생성</button>
+        <button id="btn-clear-all" class="btn-secondary danger">전체 초기화</button>
+      </div>
+    </footer>
+  </div>
+
+  <!-- JavaScript file -->
+  <script src="app.js"></script>
+</body>
+</html>
